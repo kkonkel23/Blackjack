@@ -1,33 +1,18 @@
-deck1 = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
- //declare variables
- 
- let deck1, deck2 = []
-
- //cached element references
- const deck1El = document.getElementById('deck1')
- const deck2El = document.getElementById('deck2')
- const flipBtn = document.getElementById('btn')
- 
- flipBtn.addEventListener('click', handleClick)
- 
- init()
- 
- function init(){
-     deck1 = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
- }
- 
 /*--------Variabels-------*/
 // Create the variables for the players.
-let player = ['1', '2']
+let currentPlayer = ['1', '2']
 let total;
-let deck1, deck2,
+let deck, hand = [];
 
 /*-------Cached Element References--------*/
 // Create the cached element references for the buttons.
 const startBtn = document.getElementById('startBtn')
 const hitBtn = document.getElementById('hitBtn')
 const standBtn = document.getElementById('standBtn')
+const deckEl = document.getElementById('deck')
+const p1HandEl = document.getElementById('p1Hand')
+const p2HandEl = document.getElementById('p2Hand')
 
 /*-------Event Listeners-------*/
 startBtn.addEventListener('click', init)
@@ -36,22 +21,48 @@ standBtn.addEventListener('click', stand)
 
 /*-------Functions-------*/
 // Create the initial function and call for it code the card deck.
-init();
-
+init()
+ 
 function init(){
-    let total = 0;
-    let player = '1';
+    deck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"];
+    let currentPlayer = '1';
+    shuffleCards();
 
+}
+// Shuffle function
+function shuffleCards(){
+    let currentIdx = deck.length, tempVal, randomIndex;
+    while (0 !== currentIdx) {
+        randomIndex = Math.floor(Math.random()* currentIdx);
+        currentIdx -= 1;
+        tempVal = deck[currentIdx];
+        deck[currentIdx] = deck[randomIndex];
+        deck[randomIndex] = tempVal;
+    }
+    return deck;
 }
 
 function hit(){
+    if (deck.length > 0) {
+        let randIdx = Math.floor(Math.random()*deck.length)
+        let cardPicked
+        cardPicked = deck1.splice(randIdx, 1)
+        //Push the random card to the current players hand
+        currentPlayer.hand.push(cardPicked[0])
+        
 
+        
+    }
 }
 
 function stand(){
 
 }
 
+function render(car, player){
+    let hand = document.getElementById('hand' + player)
+
+}
 // Create a function for shuffling the cards.
 
 
