@@ -12,17 +12,22 @@
 </head>
 <body>
     <h1 id="message">Let's Play Blackjack!</h1>
-    <button id="startBtn">Start a Game</button>
+    <div id="buttonContainer">
+        <button id="startBtn">Start a Game</button>
     <button id="hitBtn">Hit</button>
     <button id="standBtn">Stand</button>
-    <div id="deck" class="card large back-blue shadow"></div>
-    <div id="hand">
+    </div>
+    <div id="deckContainer">
+        <div id="deck" class="card large back-blue shadow"></div>
+    </div>
+    <div id="p1Container">
         <div id="p1Hand" class="card large outline"></div>
+        <h3 id="p1Total">Total:</h3>
+    </div>
+    <div id="p2Container">
         <div id="p2Hand" class="card large outline"></div>
+        <h3 id="p2Total">Total:</h3>
     </div>
     
-
-
-    <h3 id="p1Total">Total:</h3> <h3 id="p2Total">Total:</h3>
 </body>
 </html>

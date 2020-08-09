@@ -1,4 +1,9 @@
 body{
+    display: grid;
     text-align: center;
     margin: 10px auto;
+    grid-template-columns: 200px auto auto;
+    background-color: rgb(147, 209, 145);
+
 }
+
