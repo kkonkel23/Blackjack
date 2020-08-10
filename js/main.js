@@ -2,7 +2,8 @@
 /*--------Variabels-------*/
 // Create the variables for the players.
 let currentPlayer = [1, 2]
-let p1Total, p2Total= 0;
+let p1Total = 0 
+let p2Total = 0;
 let deck, p1HandEl, p2HandEl = [];
 let winner;
 
@@ -15,8 +16,6 @@ const deckEl = document.getElementById('deck')
 p1HandEl = document.getElementById('p1Hand')
 p2HandEl = document.getElementById('p2Hand')
 const messageEl = document.getElementById('message')
-// p1Total = document.getElementById('p1Total')
-// p2Total = document.getElementById('p2Total')
 
 /*-------Event Listeners-------*/
 startBtn.addEventListener('click', init)
@@ -29,8 +28,6 @@ init();
  
 function init(){
     deck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"];
-    let p1HandEl = [];
-    let p2HandEl = [];
     currentPlayer = 1;
     messageEl.innerText = `Let's Play Blackjack!`;
     shuffleCards();
@@ -88,12 +85,14 @@ function getValue(card) {
 }
 
 function total() {
+    p1Total = 0;
+    p2Total = 0;
     // acount for the ace 11 1 situation here at a later time
-    for (i = 0; i < p1HandEl.length; i++) {
-        p1Total += getValue(card1Picked)
+    for (i = 0; i < hand1.length; i++) {
+        p1Total += getValue(hand1[i])
     }
-    for (i = 0; i < p2HandEl.length; i++) {
-        p2Total += getValue(card2Picked)
+    for (i = 0; i < hand2.length; i++) {
+        p2Total += getValue(hand2[i])
     }
 }
 function hit(){
@@ -101,7 +100,6 @@ function hit(){
         let card1Picked = deck.shift();
         hand1.push(card1Picked);
         let p1HandEl = hand1.slice();
-        getValue();
         total();
         console.log(p1Total);
         console.log(card1Picked);
@@ -133,19 +131,19 @@ function stand(){
     }
 }
 
-function checkWinner () {
-    if (currentPlayer === 1) {
-        if (p1Total === 21 && p2Total < 21) {
-            winner = currentPlayer;
-            messageEl.innerText = `Congratulations ${winner}! Press "Start a Game" to play again!`
-        } else if (p1Total > 21) {
-            messageEl.innerText = `Bust! Player ${currentPlayer} lost, press "Start a Game" to play again!`
-        } else if (p1Total !== 21 && p1Total < 21 && p2Total !== 21 && p2Total < 21 && p1Total > p2Total) {
-            winner = currentPlayer;
-            messageEl.innerText = `Congratulations ${winner}! Press "Start a Game" to play again!`
-        }
-    }
-}
+// function checkWinner () {
+//     if (currentPlayer === 1) {
+//         if (p1Total === 21 && p2Total < 21) {
+//             winner = currentPlayer;
+//             messageEl.innerText = `Congratulations ${winner}! Press "Start a Game" to play again!`
+//         } else if (p1Total > 21) {
+//             messageEl.innerText = `Bust! Player ${currentPlayer} lost, press "Start a Game" to play again!`
+//         } else if (p1Total !== 21 && p1Total < 21 && p2Total !== 21 && p2Total < 21 && p1Total > p2Total) {
+//             winner = currentPlayer;
+//             messageEl.innerText = `Congratulations ${winner}! Press "Start a Game" to play again!`
+//         }
+//     }
+// }
 
 function end() {
 
