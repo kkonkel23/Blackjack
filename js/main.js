@@ -15,6 +15,7 @@ let hand2 = new Array();
 const startBtn = document.getElementById('startBtn')
 const hitBtn = document.getElementById('hitBtn')
 const standBtn = document.getElementById('standBtn')
+    count = 0;
 const deckEl = document.getElementById('deck')
 p1HandEl = document.getElementById('p1Hand')
 dealerHandEl = document.getElementById('dealerHand')
@@ -36,6 +37,7 @@ function init(){
     hand2 = [];
     messageEl.innerText = `Let's Play Blackjack!`;
     shuffleCards();
+    count = 0;
     winner = false;
 }
 
@@ -114,6 +116,7 @@ function hit(){
         let dealerHandEl = hand2.slice();
         getValue();
         total();
+        checkWinner();
         console.log(dealerHandEl)
         console.log(card2Picked)
         console.log(dealerTotal)
@@ -130,37 +133,42 @@ function stand(){
         currentPlayer = 2
         messageEl.innerText = `It's Player ${currentPlayer}'s turn!`
         console.log('here')
+        count += 1
+        console.log(count)
     } else {
         currentPlayer = 1
         messageEl.innerText = `It's Player ${currentPlayer}'s turn!`
+        count += 1
         checkWinner();
-        console.log('hello')
-        // if (p1Total !== 21 && p1Total < 21 && p2Total !== 21 && p2Total < 21 && p1Total > p2Total) {
-        //     winner = currentPlayer[0];
-        //     console.log('winner 3')
-        //     messageEl.innerText = `Congratulations ${winner}! Press "Start a Game" to play again!`
-        // }
+        console.log(count)
     }
 }
 
 function checkWinner () {
     if (p1Total === 21 && dealerTotal < 21) {
-        winner = currentPlayer[0];
-        messageEl.innerText = `Congratulations ${winner}! Press "Start a Game" to play again!`
+        messageEl.innerText = `Player 1 wins! Press "Start a Game" to play again!`
         console.log('winner')
     } else if (p1Total > 21) {
-        currentPlayer[0];
-        messageEl.innerText = `Bust! Player ${currentPlayer} lost, press "Start a Game" to play again!`
+        messageEl.innerText = `Bust! Player 1 lost, press "Start a Game" to play again!`
         console.log('winner 2')
-
-    // } else if (p1Total !== 21 && p1Total < 21 && p2Total !== 21 && p2Total < 21 && p1Total > p2Total) {
-    //     winner = currentPlayer;
-    //     console.log('winner 3')
-    //     messageEl.innerText = `Congratulations ${winner}! Press "Start a Game" to play again!`
-    } else if (p1Total === dealerTotal && p1Total < 21 && dealerTotal < 21){
-        return 'tie';
-        console.log('tie')
-        messageEl.innerText = `It's a tie! Press "Start a Game" to play again!`
+    } else if (dealerTotal === 21 && p1HandEl < 21) {
+        console.log('winner 3')
+        messageEl.innerText = `Dealer wins! Press "Start a Game" to play again!`
+    } else if (dealerTotal > 21) {
+        console.log('winner 4')
+        messageEl.innerText = `Bust! Dealer lost, press "Start a Game" to play again!`
+    } else if (count === 2){
+        if (p1Total !== 21 && p1Total < 21 && dealerTotal !== 21 && dealerTotal < 21 && p1Total > dealerTotal) {
+            console.log('winner 5')
+            messageEl.innerText = `Player 1 wins! Press "Start a Game" to play again!`
+        } else if (p1Total === dealerTotal && p1Total < 21 && dealerTotal < 21){
+            console.log('tie')
+            messageEl.innerText = `It's a tie! Press "Start a Game" to play again!`
+            return 'tie';
+        } else if (p1Total !== 21 && p1Total < 21 && dealerTotal !== 21 && dealerTotal < 21 && p1Total < dealerTotal) {
+            console.log('winner 6')
+            messageEl.innerText = `Dealer wins! Press "Start a Game" to play again!`
+        }
     }
 }
 
