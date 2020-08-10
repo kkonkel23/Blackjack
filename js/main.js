@@ -2,7 +2,7 @@
 /*--------Variabels-------*/
 // Create the variables for the players.
 let currentPlayer = [1, 2]
-let p1Total, p2Total, value= 0;
+let p1Total, p2Total= 0;
 let deck, p1HandEl, p2HandEl = [];
 let winner;
 
@@ -15,8 +15,8 @@ const deckEl = document.getElementById('deck')
 p1HandEl = document.getElementById('p1Hand')
 p2HandEl = document.getElementById('p2Hand')
 const messageEl = document.getElementById('message')
-p1Total = document.getElementById('p1Total')
-p2Total = document.getElementById('p2Total')
+// p1Total = document.getElementById('p1Total')
+// p2Total = document.getElementById('p2Total')
 
 /*-------Event Listeners-------*/
 startBtn.addEventListener('click', init)
@@ -36,41 +36,6 @@ function init(){
     shuffleCards();
 }
 
-
-    // for (let i = 0; i < deck.length; i++) {
-    //     let value = parseInt(deck)
-    //     if (deck === "dQ" || deck === "dK" || deck === "dJ" || deck === "d10" || deck === "hQ" || deck === "hK" || deck === "hJ" || deck === "h10" || deck === "cQ" || deck === "cK" || deck === "cJ" || deck === "c10" || deck === "sQ" || deck === "sK" || deck === "sJ" || deck === "s10") 
-    //         value = 10
-    //     if (deck === "d09" || deck === "h09" || deck === "c09" || deck[i] === "s09")
-    //         value = 9
-    //     if (deck[i] === "d08" || deck[i] === "h08" || deck[i] === "c08" || deck[i] === "s08")
-    //         value = 8
-    //     if (deck[i] === "d07" || deck[i] === "h07" || deck[i] === "c07" || deck[i] === "s07")
-    //         value = 7
-    //     if (deck[i] === "d06" || deck[i] === "h06" || deck[i] === "c06" || deck[i] === "s06")
-    //         value = 6
-    //     if (deck[i] === "d05" || deck[i] === "h05" || deck[i] === "c05" || deck[i] === "s05")
-    //         value = 5
-    //     if (deck[i] === "d04" || deck[i] === "h04" || deck[i] === "c04" || deck[i] === "s04")
-    //         value = 4
-    //     if (deck[i] === "d03" || deck[i] === "h03" || deck[i] === "c03" || deck[i] === "s03")
-    //         value = 3
-    //     if (deck[i] === "d02" || deck[i] === "h02" || deck[i] === "c02" || deck[i] === "s02")
-    //         value = 2
-    //     if (deck[i] === "dA" || deck[i] === "hA" || deck[i] === "cA" || deck[i] === "sA")
-    //         if (p1Total > 21 || p2Total > 21) {
-    //             value = 1
-    //         } else if (p1Total <= 21 || p2Total <= 21) {
-    //             value = 11
-    //         }
-    // }
-    // return value;        
-
-
-
-// function start() {
-//     messageEl.innerText = `It's Player 1's turn`
-// }
 // Shuffle function
 function shuffleCards(){
     let currentIdx = deck.length, tempVal, randomIndex;
@@ -89,46 +54,66 @@ let hand2 = new Array();
 
 function getValue(card) {
     let cardValue;
-    if (card === "dQ" || card === "dK" || card === "dJ" || card === "d10" || card === "hQ" || card === "hK" || card === "hJ" || card === "h10" || card === "cQ" || card === "cK" || card === "cJ" || card === "c10" || p1HandEl[i] === "sQ" || card === "sK" || card === "sJ" ||card === "s10")
+    if (card === "dQ" || card === "dK" || card === "dJ" || card === "d10" || card === "hQ" || card === "hK" || card === "hJ" || card === "h10" || card === "cQ" || card === "cK" || card === "cJ" || card === "c10" || card === "sQ" || card === "sK" || card === "sJ" ||card === "s10"){
         cardValue = 10;
-    if (card === "d09" || card === "h09" || card === "c09" || card === "s09")
+    }
+    if (card === "d09" || card === "h09" || card === "c09" || card === "s09"){
         cardValue = 9;
-    if (card === "d08" || card === "h08" || card === "c08" |card === "s08")
+    }
+    if (card === "d08" || card === "h08" || card === "c08" |card === "s08"){
         cardValue = 8;
-    if (card === "d07" || card === "h07" || card === "c07" || card === "s07")
+    }
+    if (card === "d07" || card === "h07" || card === "c07" || card === "s07"){
         cardValue = 7;
-    if (deck === "d06" || card === "h06" || card === "c06" || card === "s06")
+    }
+    if (deck === "d06" || card === "h06" || card === "c06" || card === "s06"){
         cardValue = 6;
-    if (card === "d05" || card === "h05" || card === "c05" || card === "s05")
+    }
+    if (card === "d05" || card === "h05" || card === "c05" || card === "s05"){
         cardValue = 5;
-    if (card === "d04" || card === "h04" || card === "c04" || card === "s04")
+    }
+    if (card === "d04" || card === "h04" || card === "c04" || card === "s04"){
         cardValue = 4;
-    if (card === "d03" || card === "h03" || card === "c03" || card === "s03")
+    }
+    if (card === "d03" || card === "h03" || card === "c03" || card === "s03"){
         cardValue = 3;
-    if (card === "d02" || card === "h02" || pcard=== "c02" || card === "s02")
+    }
+    if (card === "d02" || card === "h02" || card=== "c02" || card === "s02"){
         cardValue = 2;
-    if (card === "dA" || card === "hA" || card === "cA" || card === "sA")
-        if (p1Total > 21 || p2Total > 21) {
-            cardValue = 1;
-        } else if (p1Total <= 21 || p2Total <= 21) {
-            cardValue = 11;
-        }
+    }
+    if (card === "dA" || card === "hA" || card === "cA" || card === "sA"){
+        cardValue = 11;
+    }
+    return cardValue;
+}
+
+function total() {
+    // acount for the ace 11 1 situation here at a later time
+    for (i = 0; i < p1HandEl.length; i++) {
+        p1Total += getValue(card1Picked)
+    }
+    for (i = 0; i < p2HandEl.length; i++) {
+        p2Total += getValue(card2Picked)
+    }
 }
 function hit(){
     if (currentPlayer === 1) {
-        let card = deck.pop();
-        hand1.push(card);
+        let card1Picked = deck.shift();
+        hand1.push(card1Picked);
         let p1HandEl = hand1.slice();
-        p1Total += value;
-        console.log(value);
-        console.log(p1HandEl);
+        getValue();
+        total();
         console.log(p1Total);
+        console.log(card1Picked);
+        console.log(p1HandEl);
     } else {
-        let card = deck.pop();
-        hand2.push(card);
+        let card2Picked = deck.pop();
+        hand2.push(card2Picked);
         let p2HandEl = hand2.slice();
-        p2Total += value
+        getValue();
+        total();
         console.log(p2HandEl)
+        console.log(card2Picked)
         console.log(p2Total)
     }
         // declare who the current player is 
