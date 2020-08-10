@@ -1,11 +1,14 @@
 
 /*--------Variabels-------*/
 // Create the variables for the players.
-let currentPlayer = [1, 2]
-let p1Total = 0 
-let p2Total = 0;
-let deck, p1HandEl, p2HandEl = [];
+let currentPlayer = [1, 'Dealer']
+let p1Total = 0; 
+let dealerTotal = 0;
+let deck, p1HandEl, dealerHandEl = [];
 let winner;
+let hand1 = new Array();
+let hand2 = new Array();
+
 
 /*-------Cached Element References--------*/
 // Create the cached element references for the buttons.
@@ -14,7 +17,7 @@ const hitBtn = document.getElementById('hitBtn')
 const standBtn = document.getElementById('standBtn')
 const deckEl = document.getElementById('deck')
 p1HandEl = document.getElementById('p1Hand')
-p2HandEl = document.getElementById('p2Hand')
+dealerHandEl = document.getElementById('dealerHand')
 const messageEl = document.getElementById('message')
 
 /*-------Event Listeners-------*/
@@ -29,8 +32,11 @@ init();
 function init(){
     deck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"];
     currentPlayer = 1;
+    hand1 = [];
+    hand2 = [];
     messageEl.innerText = `Let's Play Blackjack!`;
     shuffleCards();
+    winner = false;
 }
 
 // Shuffle function
@@ -45,9 +51,6 @@ function shuffleCards(){
     }
     return deck;
 }
-
-let hand1 = new Array();
-let hand2 = new Array();
 
 function getValue(card) {
     let cardValue;
@@ -86,13 +89,13 @@ function getValue(card) {
 
 function total() {
     p1Total = 0;
-    p2Total = 0;
+    dealerTotal = 0;
     // acount for the ace 11 1 situation here at a later time
     for (i = 0; i < hand1.length; i++) {
         p1Total += getValue(hand1[i])
     }
     for (i = 0; i < hand2.length; i++) {
-        p2Total += getValue(hand2[i])
+        dealerTotal += getValue(hand2[i])
     }
 }
 function hit(){
@@ -101,18 +104,19 @@ function hit(){
         hand1.push(card1Picked);
         let p1HandEl = hand1.slice();
         total();
+        checkWinner();
         console.log(p1Total);
         console.log(card1Picked);
         console.log(p1HandEl);
     } else {
         let card2Picked = deck.pop();
         hand2.push(card2Picked);
-        let p2HandEl = hand2.slice();
+        let dealerHandEl = hand2.slice();
         getValue();
         total();
-        console.log(p2HandEl)
+        console.log(dealerHandEl)
         console.log(card2Picked)
-        console.log(p2Total)
+        console.log(dealerTotal)
     }
         // declare who the current player is 
         // push the card from the deck into the hand of the current player** 
@@ -125,28 +129,44 @@ function stand(){
     if (currentPlayer === 1) {
         currentPlayer = 2
         messageEl.innerText = `It's Player ${currentPlayer}'s turn!`
+        console.log('here')
     } else {
         currentPlayer = 1
         messageEl.innerText = `It's Player ${currentPlayer}'s turn!`
+        checkWinner();
+        console.log('hello')
+        // if (p1Total !== 21 && p1Total < 21 && p2Total !== 21 && p2Total < 21 && p1Total > p2Total) {
+        //     winner = currentPlayer[0];
+        //     console.log('winner 3')
+        //     messageEl.innerText = `Congratulations ${winner}! Press "Start a Game" to play again!`
+        // }
     }
 }
 
-// function checkWinner () {
-//     if (currentPlayer === 1) {
-//         if (p1Total === 21 && p2Total < 21) {
-//             winner = currentPlayer;
-//             messageEl.innerText = `Congratulations ${winner}! Press "Start a Game" to play again!`
-//         } else if (p1Total > 21) {
-//             messageEl.innerText = `Bust! Player ${currentPlayer} lost, press "Start a Game" to play again!`
-//         } else if (p1Total !== 21 && p1Total < 21 && p2Total !== 21 && p2Total < 21 && p1Total > p2Total) {
-//             winner = currentPlayer;
-//             messageEl.innerText = `Congratulations ${winner}! Press "Start a Game" to play again!`
-//         }
-//     }
-// }
+function checkWinner () {
+    if (p1Total === 21 && dealerTotal < 21) {
+        winner = currentPlayer[0];
+        messageEl.innerText = `Congratulations ${winner}! Press "Start a Game" to play again!`
+        console.log('winner')
+    } else if (p1Total > 21) {
+        currentPlayer[0];
+        messageEl.innerText = `Bust! Player ${currentPlayer} lost, press "Start a Game" to play again!`
+        console.log('winner 2')
+
+    // } else if (p1Total !== 21 && p1Total < 21 && p2Total !== 21 && p2Total < 21 && p1Total > p2Total) {
+    //     winner = currentPlayer;
+    //     console.log('winner 3')
+    //     messageEl.innerText = `Congratulations ${winner}! Press "Start a Game" to play again!`
+    } else if (p1Total === dealerTotal && p1Total < 21 && dealerTotal < 21){
+        return 'tie';
+        console.log('tie')
+        messageEl.innerText = `It's a tie! Press "Start a Game" to play again!`
+    }
+}
+
 
 function end() {
-
+    
 }
 
 // Create a function for shuffling the cards.
