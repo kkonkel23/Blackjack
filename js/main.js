@@ -146,26 +146,33 @@ function stand(){
 
 function checkWinner () {
     if (p1Total === 21 && dealerTotal < 21) {
+        winner = true;
         messageEl.innerText = `Player 1 wins! Press "Start a Game" to play again!`
         console.log('winner')
     } else if (p1Total > 21) {
+        winner = true;
         messageEl.innerText = `Bust! Player 1 lost, press "Start a Game" to play again!`
         console.log('winner 2')
     } else if (dealerTotal === 21 && p1HandEl < 21) {
+        winner = true;
         console.log('winner 3')
         messageEl.innerText = `Dealer wins! Press "Start a Game" to play again!`
     } else if (dealerTotal > 21) {
+        winner = true;
         console.log('winner 4')
         messageEl.innerText = `Bust! Dealer lost, press "Start a Game" to play again!`
     } else if (count === 2){
         if (p1Total !== 21 && p1Total < 21 && dealerTotal !== 21 && dealerTotal < 21 && p1Total > dealerTotal) {
+            winner = true;
             console.log('winner 5')
             messageEl.innerText = `Player 1 wins! Press "Start a Game" to play again!`
         } else if (p1Total === dealerTotal && p1Total < 21 && dealerTotal < 21){
+            winner = true;
             console.log('tie')
             messageEl.innerText = `It's a tie! Press "Start a Game" to play again!`
             return 'tie';
         } else if (p1Total !== 21 && p1Total < 21 && dealerTotal !== 21 && dealerTotal < 21 && p1Total < dealerTotal) {
+            winner = true;
             console.log('winner 6')
             messageEl.innerText = `Dealer wins! Press "Start a Game" to play again!`
         }
@@ -174,7 +181,9 @@ function checkWinner () {
 
 
 function end() {
-    
+    if (count === 2){
+        standBtn.disabled = true
+    }
 }
 
 // Create a function for shuffling the cards.
