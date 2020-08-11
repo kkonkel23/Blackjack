@@ -74,7 +74,7 @@ function getValue(card) {
     if (card === "d07" || card === "h07" || card === "c07" || card === "s07"){
         cardValue = 7;
     }
-    if (deck === "d06" || card === "h06" || card === "c06" || card === "s06"){
+    if (card === "d06" || card === "h06" || card === "c06" || card === "s06"){
         cardValue = 6;
     }
     if (card === "d05" || card === "h05" || card === "c05" || card === "s05"){
@@ -90,8 +90,7 @@ function getValue(card) {
         cardValue = 2;
     }
     if (card === "dA" || card === "hA" || card === "cA" || card === "sA"){
-        cardValue = 11;
-        acePresent = true;
+        cardValue = 1;
     }
     return cardValue;
 }
@@ -99,19 +98,68 @@ function getValue(card) {
 function total() {
     p1Total = 0;
     dealerTotal = 0;
-    // acount for the ace 11 1 situation here at a later time
     for (i = 0; i < hand1.length; i++) {
-        p1Total += getValue(hand1[i])
-    }
-    for (i = 0; i < hand2.length; i++) {
-        if (hand2[i] === "dA" || hand2[i] === "hA" || hand2[i] === "cA" || hand2[i] === "sA" && dealerTotal > 21) {
-            dealerTotal += 1;
+        if(p1Total < 11 && hand1.includes("dA" || "hA" || "cA" || "sA")){
+            p1Total += 10
+        // forEach hand increment a counter everytime you have an A
+        // ex:  hand is A,A, Q, 3, 4
+        // total cards 1 + 1 + 10 + 3 + 4 (total is 19) (ace counter is at 2, BUT total is > 11 (so do nothing))
+        // ex: hand is A, A, 5, 3 (total is 20)
+        // total cards 1 + 1 + 5 + 3 (10) (ace count is at 2 and value is < 11) {total +10, ace count - 1}
+        // --> 11 + 1 + 5 + 3 (20)
         } else {
-            dealerTotal += getValue(hand2[i])
+            p1Total += getValue(hand1[i])
         }
     }
+    for (i = 0; i < hand2.length; i++) {
+        if ((hand2[i] === "dA" || hand2[i] === "hA" || hand2[i] === "cA" || hand2[i] === "sA") && dealerTotal < 11) {
+            dealerTotal += 10;
+            dealerTotal += getValue(hand2[i])
+            console.log('less than 11')
+        } else if ((hand2[i] === "dA" || hand2[i] === "hA" || hand2[i] === "cA" || hand2[i] === "sA") && dealerTotal > 11){
+            // dealerTotal -= 10;
+            dealerTotal += getValue(hand2[i]);
+            console.log('higher than 11')
+        } else {
+            dealerTotal += getValue(hand2[i]);
+            console.log('nothing')
+        }
+        if ((hand2.includes("dA") || hand2.includes("hA") || hand2.includes("cA") || hand2.includes("sA")) && dealerTotal > 21){
+            dealerTotal -= 10;
+            // dealerTotal += getValue(hand2[i]);
+            console.log('avoid bust')
+        } 
+    }
 }
+//check value of cards
+// for (i = 0; i < hand2.length; i++) {
+//     if ((hand2[i] === "dA" || hand2[i] === "hA" || hand2[i] === "cA" || hand2[i] === "sA") && dealerTotal < 11) {
+//         dealerTotal += 10;
+//         console.log('less than 11')
+//     } else if ((hand2[i] === "dA" || hand2[i] === "hA" || hand2[i] === "cA" || hand2[i] === "sA") && dealerTotal > 11){
+//         // dealerTotal -= 10;
+//         dealerTotal += getValue(hand2[i]);
+//         console.log('higher than 11')
+//     } 
+//     if ((hand2.includes("dA") || hand2.includes("hA") || hand2.includes("cA") || hand2.includes("sA")) && dealerTotal > 21){
+//         dealerTotal -= 10;
+//         // dealerTotal += getValue(hand2[i]);
+//         console.log('avoid bust')
+//     } else {
+//         dealerTotal += getValue(hand2[i]);
+//         console.log('nothing')
+//     }
+// }
 
+
+function dealACard(){
+    if (currentPlayer === 1) {
+        let card1Picked = deck.shift();
+        hand1.push(card1Picked);
+        let p1HandEl = hand1.slice();
+
+    }
+}
 function hit(){
     if (currentPlayer === 1) {
         let card1Picked = deck.shift();
@@ -131,8 +179,7 @@ function hit(){
         total();
         checkWinner();
         end();
-        render();
-        // checkAce();
+        render(card2Picked);
         console.log(dealerHandEl)
         console.log(card2Picked)
         console.log(dealerTotal)
@@ -148,7 +195,6 @@ function stand(){
     if (currentPlayer === 1) {
         currentPlayer = 2
         messageEl.innerText = `It's the Dealer's turn!`
-        console.log('here')
         count += 1
         end();
         console.log(count)
@@ -201,10 +247,12 @@ function end() {
     if (count === 2){
         standBtn.disabled = true
         hitBtn.disabled = true
-    } else if (winner === true && count === 2){
+    } 
+    if (winner === true && count === 2){
         standBtn.disabled = true;
         hitBtn.disabled = true;
-    } else if (dealerTotal >= 17 && currentPlayer === 'Dealer'){
+    } 
+    if (dealerTotal >= 17 && currentPlayer === 'Dealer'){
         hitBtn.disabled = true;
     } else {
         standBtn.disabled = false;
@@ -218,6 +266,18 @@ function render(card1Picked) {
     }
     if (hand1.length > 1) {  // Removes previous picked card from deck 2 class list
         p1HandEl.classList.add(card1Picked);
+    }
+    cardToAdd = card1Picked;  // Sets card to be removed on next click
+    p1HandEl.classList.add(card1Picked);  // Adds current card picked to deck 2 array
+    if (hand1.length === 0) {  // Removes card back color and adds outline when last card is picked
+        p1HandEl.classList.add("outline");
+        p1HandEl.classList.remove("back-blue");
+    }
+    if (hand2.length === 1) {  // Removes outline class when first card is picked
+        dealerHandEl.classList.remove("outline");
+    }
+    if (hand2.length > 1) {  // Removes previous picked card from deck 2 class list
+        dealerHandEl.classList.add(card1Picked);
     }
     cardToAdd = card1Picked;  // Sets card to be removed on next click
     p1HandEl.classList.add(card1Picked);  // Adds current card picked to deck 2 array
