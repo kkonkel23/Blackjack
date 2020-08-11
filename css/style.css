@@ -3,7 +3,7 @@ body{
     text-align: center;
     margin: 10px auto;
     grid-template-columns: auto auto auto;
-    grid-template-rows: ;
+    grid-template-rows: auto;
     background-color: rgb(147, 209, 145);
 }
 
