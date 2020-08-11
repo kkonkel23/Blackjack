@@ -39,6 +39,8 @@ function init(){
     shuffleCards();
     count = 0;
     winner = false;
+    hitBtn.disabled = false;
+    standBtn.disabled = false;
 }
 
 // Shuffle function
@@ -107,6 +109,7 @@ function hit(){
         let p1HandEl = hand1.slice();
         total();
         checkWinner();
+        end();
         console.log(p1Total);
         console.log(card1Picked);
         console.log(p1HandEl);
@@ -117,6 +120,7 @@ function hit(){
         getValue();
         total();
         checkWinner();
+        end();
         console.log(dealerHandEl)
         console.log(card2Picked)
         console.log(dealerTotal)
@@ -141,6 +145,7 @@ function stand(){
         count += 1
         checkWinner();
         console.log(count)
+        end();
     }
 }
 
@@ -183,6 +188,12 @@ function checkWinner () {
 function end() {
     if (count === 2){
         standBtn.disabled = true
+    } else if (winner === true){
+        standBtn.disabled = true
+        hitBtn.disabled = true
+    } else {
+        standBtn.disabled = false;
+        hitBtn.disabled = false;
     }
 }
 
