@@ -87,6 +87,7 @@ function getValue(card) {
     }
     if (card === "dA" || card === "hA" || card === "cA" || card === "sA"){
         cardValue = 11;
+        acePresent = true;
     }
     return cardValue;
 }
@@ -99,9 +100,14 @@ function total() {
         p1Total += getValue(hand1[i])
     }
     for (i = 0; i < hand2.length; i++) {
-        dealerTotal += getValue(hand2[i])
+        if (hand2[i] === "dA" || hand2[i] === "hA" || hand2[i] === "cA" || hand2[i] === "sA" && dealerTotal > 21) {
+            dealerTotal += 1;
+        } else {
+            dealerTotal += getValue(hand2[i])
+        }
     }
 }
+
 function hit(){
     if (currentPlayer === 1) {
         let card1Picked = deck.shift();
@@ -160,7 +166,7 @@ function checkWinner () {
         winner = true;
         messageEl.innerText = `Bust! Player 1 lost, press "Start a Game" to play again!`
         console.log('winner 2')
-    } else if (dealerTotal === 21 && p1HandEl < 21) {
+    } else if (dealerTotal === 21 && p1Total < 21) {
         winner = true;
         console.log('winner 3')
         messageEl.innerText = `Dealer wins! Press "Start a Game" to play again!`
@@ -186,15 +192,10 @@ function checkWinner () {
     }
 }
 
-// function checkAce() {
-//     if (dealerTotal > 21 && hand2.includes("dA" || "hA" || "cA" || "sA")) {
-//         dealerTotal -= 10;
-//     } 
-// }
-
 function end() {
     if (count === 2){
         standBtn.disabled = true
+        hitBtn.disabled = true
     } else if (winner === true && count === 2){
         standBtn.disabled = true;
         hitBtn.disabled = true;
@@ -215,10 +216,6 @@ function render(card1Picked) {
     }
     cardToAdd = card1Picked;  // Sets card to be removed on next click
     p1HandEl.classList.add(card1Picked);  // Adds current card picked to deck 2 array
-    // if (deck2.length === 26) {  // Adjusts shadow when deck gets above/below halfway full
-    //     deck2El.classList.add("shadow");
-    //     deck1El.classList.remove("shadow");
-    // }
     if (hand1.length === 0) {  // Removes card back color and adds outline when last card is picked
         p1HandEl.classList.add("outline");
         p1HandEl.classList.remove("back-blue");
@@ -238,5 +235,4 @@ function render(card1Picked) {
 // Create the checkWinner function, winner with the closest to 21 without going over wins
     //include here the check if the player busted(going over 21)
 // Include messages specified to whether the game is won, lost, or tied(had the same number). At the end of this add, Congrats or too bad or it's a tie, then after add, click Start a Game to play again!
- 
  
