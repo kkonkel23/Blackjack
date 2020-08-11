@@ -20,6 +20,8 @@ const deckEl = document.getElementById('deck')
 p1HandEl = document.getElementById('p1Hand')
 dealerHandEl = document.getElementById('dealerHand')
 const messageEl = document.getElementById('message')
+const displayTotal1 = document.getElementById('p1Total')
+const displayTotal2 = document.getElementById('dealerTotal')
 
 /*-------Event Listeners-------*/
 startBtn.addEventListener('click', init)
@@ -41,6 +43,8 @@ function init(){
     winner = false;
     hitBtn.disabled = false;
     standBtn.disabled = false;
+    displayTotal1.innerText = `Total: 0`
+    displayTotal2.innerText = `Total: 0`
 }
 
 // Shuffle function
@@ -127,6 +131,7 @@ function hit(){
         total();
         checkWinner();
         end();
+        render();
         // checkAce();
         console.log(dealerHandEl)
         console.log(card2Picked)
@@ -220,6 +225,8 @@ function render(card1Picked) {
         p1HandEl.classList.add("outline");
         p1HandEl.classList.remove("back-blue");
     }
+    displayTotal1.innerText = `Total: ${p1Total}`
+    displayTotal2.innerText = `Total: ${dealerTotal}`
 }
 // Create a function for shuffling the cards.
 
