@@ -99,17 +99,21 @@ function total() {
     p1Total = 0;
     dealerTotal = 0;
     for (i = 0; i < hand1.length; i++) {
-        if(p1Total < 11 && hand1.includes("dA" || "hA" || "cA" || "sA")){
-            p1Total += 10
-        // forEach hand increment a counter everytime you have an A
-        // ex:  hand is A,A, Q, 3, 4
-        // total cards 1 + 1 + 10 + 3 + 4 (total is 19) (ace counter is at 2, BUT total is > 11 (so do nothing))
-        // ex: hand is A, A, 5, 3 (total is 20)
-        // total cards 1 + 1 + 5 + 3 (10) (ace count is at 2 and value is < 11) {total +10, ace count - 1}
-        // --> 11 + 1 + 5 + 3 (20)
-        } else {
+        if ((hand1[i] === "dA" || hand1[i] === "hA" || hand1[i] === "cA" || hand1[i] === "sA") && p1Total < 11) {
+            p1Total += 10;
             p1Total += getValue(hand1[i])
+            console.log('less than 11')
+        } else if ((hand1[i] === "dA" || hand1[i] === "hA" || hand1[i] === "cA" || hand1[i] === "sA") && p1Total > 11){
+            p1Total += getValue(hand1[i]);
+            console.log('higher than 11')
+        } else {
+            p1Total += getValue(hand1[i]);
+            console.log('nothing')
         }
+        if ((hand1.includes("dA") || hand1.includes("hA") || hand1.includes("cA") || hand1.includes("sA")) && p1Total > 21){
+            p1Total -= 10;
+            console.log('avoid bust')
+        } 
     }
     for (i = 0; i < hand2.length; i++) {
         if ((hand2[i] === "dA" || hand2[i] === "hA" || hand2[i] === "cA" || hand2[i] === "sA") && dealerTotal < 11) {
@@ -117,7 +121,6 @@ function total() {
             dealerTotal += getValue(hand2[i])
             console.log('less than 11')
         } else if ((hand2[i] === "dA" || hand2[i] === "hA" || hand2[i] === "cA" || hand2[i] === "sA") && dealerTotal > 11){
-            // dealerTotal -= 10;
             dealerTotal += getValue(hand2[i]);
             console.log('higher than 11')
         } else {
@@ -126,31 +129,10 @@ function total() {
         }
         if ((hand2.includes("dA") || hand2.includes("hA") || hand2.includes("cA") || hand2.includes("sA")) && dealerTotal > 21){
             dealerTotal -= 10;
-            // dealerTotal += getValue(hand2[i]);
             console.log('avoid bust')
         } 
     }
 }
-//check value of cards
-// for (i = 0; i < hand2.length; i++) {
-//     if ((hand2[i] === "dA" || hand2[i] === "hA" || hand2[i] === "cA" || hand2[i] === "sA") && dealerTotal < 11) {
-//         dealerTotal += 10;
-//         console.log('less than 11')
-//     } else if ((hand2[i] === "dA" || hand2[i] === "hA" || hand2[i] === "cA" || hand2[i] === "sA") && dealerTotal > 11){
-//         // dealerTotal -= 10;
-//         dealerTotal += getValue(hand2[i]);
-//         console.log('higher than 11')
-//     } 
-//     if ((hand2.includes("dA") || hand2.includes("hA") || hand2.includes("cA") || hand2.includes("sA")) && dealerTotal > 21){
-//         dealerTotal -= 10;
-//         // dealerTotal += getValue(hand2[i]);
-//         console.log('avoid bust')
-//     } else {
-//         dealerTotal += getValue(hand2[i]);
-//         console.log('nothing')
-//     }
-// }
-
 
 function dealACard(){
     if (currentPlayer === 1) {
