@@ -158,6 +158,7 @@ function hit(){
         total();
         checkWinner();
         render();
+
         console.log(p1Total);
         console.log(card1Picked);
         console.log(p1HandEl);
@@ -168,6 +169,7 @@ function hit(){
         total();
         checkWinner();
         render();
+        checkTotal();
         console.log(dealerHandEl)
         console.log(card2Picked)
         console.log(dealerTotal)
@@ -184,56 +186,51 @@ function stand(){
         currentPlayer = 2
         messageEl.innerText = `It's the Dealer's turn!`
         count += 1
+        checkTotal();
     } else {
         currentPlayer = 1
         messageEl.innerText = `It's Player ${currentPlayer}'s turn!`
         count += 1
+        checkTotal();
         checkWinner();
+    }
+}
+
+function checkTotal(){
+    if (count === 1 && dealerTotal >= 17){
+        hitBtn.disabled = true;
+        console.log('disabled')
     }
 }
 
 function checkWinner () {
     if (p1Total === 21 && dealerTotal < 21 && count === 2) {
-        winner = true;
         messageEl.innerText = `Player wins! Press "New Deal" to play again!`
-        console.log('winner')
         standBtn.disabled = true;
         hitBtn.disabled = true;
     } else if (p1Total > 21) {
-        winner = true;
         messageEl.innerText = `Bust! Player lost, press "New Deal" to play again!`
-        console.log('winner 2')
         standBtn.disabled = true;
         hitBtn.disabled = true;
     } else if (dealerTotal === 21 && p1Total < 21) {
-        winner = true;
-        console.log('winner 3')
         messageEl.innerText = `Dealer wins! Press "New Deal" to play again!`
         standBtn.disabled = true;
         hitBtn.disabled = true;
     } else if (dealerTotal > 21) {
-        winner = true;
-        console.log('winner 4')
         messageEl.innerText = `Player wins! Press "New Deal" to play again!`
         standBtn.disabled = true;
         hitBtn.disabled = true;
     } else if (count === 2){
         if (p1Total !== 21 && p1Total < 21 && dealerTotal !== 21 && dealerTotal < 21 && p1Total > dealerTotal) {
-            winner = true;
-            console.log('winner 5')
             messageEl.innerText = `Player wins! Press "New Deal" to play again!`
             standBtn.disabled = true;
-        hitBtn.disabled = true;
+            hitBtn.disabled = true;
         } else if (p1Total === dealerTotal && p1Total < 21 && dealerTotal < 21){
-            console.log('tie')
             messageEl.innerText = `It's a tie! Press "New Deal" to play again!`
-            winner = true;
             standBtn.disabled = true;
         hitBtn.disabled = true;
         } else if (p1Total !== 21 && p1Total < 21 && dealerTotal !== 21 && dealerTotal < 21 && p1Total < dealerTotal) {
-            console.log('winner 6')
             messageEl.innerText = `Dealer wins! Press "New Deal" to play again!`
-            winner = true;
             standBtn.disabled = true;
             hitBtn.disabled = true;
         }
