@@ -3,7 +3,7 @@
 let currentPlayer = [1, 'Dealer']
 let p1Total = 0; 
 let dealerTotal = 0;
-let deck, p1HandEl, dealerHandEl = [];
+let deck = [];
 let winner;
 let hand1 = new Array();
 let hand2 = new Array();
@@ -16,11 +16,12 @@ const hitBtn = document.getElementById('hitBtn')
 const standBtn = document.getElementById('standBtn')
     count = 0;
 const deckEl = document.getElementById('deck')
-p1HandEl = document.getElementById('p1Hand')
-dealerHandEl = document.getElementById('dealerHand')
+const p1HandEl = document.getElementById('p1Hand')
+const dealerHandEl = document.getElementById('dealerHand')
 const messageEl = document.getElementById('message')
 const displayTotal1 = document.getElementById('p1Total')
 const displayTotal2 = document.getElementById('dealerTotal')
+
 
 /*-------Event Listeners-------*/
 startBtn.addEventListener('click', init)
@@ -38,12 +39,14 @@ function init(){
     hand2 = [];
     messageEl.innerText = `Let's Play Blackjack!`;
     shuffleCards();
+    newHand();
+    total();
     count = 0;
     winner = false;
     hitBtn.disabled = false;
     standBtn.disabled = false;
-    displayTotal1.innerText = `Total: 0`
-    displayTotal2.innerText = `Total: 0`
+    // displayTotal1.innerText = `Total: 0`
+    // displayTotal2.innerText = `Total: 0`
 }
 
 // Shuffle function
@@ -136,15 +139,19 @@ function total() {
     }
 }
 
-
-function dealACard(){
-    if (currentPlayer === 1) {
-        let card1Picked = deck.shift();
-        hand1.push(card1Picked);
-        let p1HandEl = hand1.slice();
-
-    }
+function newHand() {
+    let cardToAdd = deck.pop()
+    hand1.push(cardToAdd)
+    cardToAdd = deck.pop()
+    hand1.push(cardToAdd)
+    cardToAdd = deck.pop()
+    hand2.push(cardToAdd)
+    cardToAdd = deck.pop()
+    hand2.push(cardToAdd)
+    total();
+    render();
 }
+
 function hit(){
     if (currentPlayer === 1) {
         let card1Picked = deck.shift();
@@ -153,7 +160,7 @@ function hit(){
         total();
         checkWinner();
         end();
-        render(card1Picked);
+        render();
         console.log(p1Total);
         console.log(card1Picked);
         console.log(p1HandEl);
@@ -164,7 +171,7 @@ function hit(){
         total();
         checkWinner();
         end();
-        render(card2Picked);
+        render();
         console.log(dealerHandEl)
         console.log(card2Picked)
         console.log(dealerTotal)
@@ -245,34 +252,26 @@ function end() {
     }
 }
 
-function render(card1Picked) {
-    if (hand1.length === 1) {  // Removes outline class when first card is picked
-        p1HandEl.classList.remove("outline");
-    }
-    if (hand1.length > 1) {  // Removes previous picked card from deck 2 class list
-        p1HandEl.classList.add(card1Picked);
-    }
-    cardToAdd = card1Picked;  // Sets card to be removed on next click
-    p1HandEl.classList.add(card1Picked);  // Adds current card picked to deck 2 array
-    if (hand1.length === 0) {  // Removes card back color and adds outline when last card is picked
-        p1HandEl.classList.add("outline");
-        p1HandEl.classList.remove("back-blue");
-    }
-    if (hand2.length === 1) {  // Removes outline class when first card is picked
-        dealerHandEl.classList.remove("outline");
-    }
-    if (hand2.length > 1) {  // Removes previous picked card from deck 2 class list
-        dealerHandEl.classList.add(card1Picked);
-    }
-    cardToAdd = card1Picked;  // Sets card to be removed on next click
-    p1HandEl.classList.add(card1Picked);  // Adds current card picked to deck 2 array
-    if (hand1.length === 0) {  // Removes card back color and adds outline when last card is picked
-        p1HandEl.classList.add("outline");
-        p1HandEl.classList.remove("back-blue");
-    }
+function render(){
+    p1HandEl.innerHTML = ''
+    dealerHandEl.innerHTML = ''
+    hand1.forEach((card) => {
+        let newDiv = document.createElement('div')
+        newDiv.className = `card large ${card}`
+        console.log(newDiv)
+        p1HandEl.appendChild(newDiv)
+    })
+    hand2.forEach((card) => {
+        let newDiv = document.createElement('div')
+        newDiv.className = `card large ${card}`
+        console.log(newDiv)
+        dealerHandEl.appendChild(newDiv)
+    })
     displayTotal1.innerText = `Total: ${p1Total}`
     displayTotal2.innerText = `Total: ${dealerTotal}`
 }
+
+
 // Create a function for shuffling the cards.
 
 
