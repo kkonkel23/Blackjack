@@ -197,31 +197,45 @@ function checkWinner () {
         winner = true;
         messageEl.innerText = `Player wins! Press "New Deal" to play again!`
         console.log('winner')
+        standBtn.disabled = true;
+        hitBtn.disabled = true;
     } else if (p1Total > 21) {
         winner = true;
         messageEl.innerText = `Bust! Player lost, press "New Deal" to play again!`
         console.log('winner 2')
+        standBtn.disabled = true;
+        hitBtn.disabled = true;
     } else if (dealerTotal === 21 && p1Total < 21) {
         winner = true;
         console.log('winner 3')
         messageEl.innerText = `Dealer wins! Press "New Deal" to play again!`
+        standBtn.disabled = true;
+        hitBtn.disabled = true;
     } else if (dealerTotal > 21) {
         winner = true;
         console.log('winner 4')
         messageEl.innerText = `Player wins! Press "New Deal" to play again!`
+        standBtn.disabled = true;
+        hitBtn.disabled = true;
     } else if (count === 2){
         if (p1Total !== 21 && p1Total < 21 && dealerTotal !== 21 && dealerTotal < 21 && p1Total > dealerTotal) {
             winner = true;
             console.log('winner 5')
             messageEl.innerText = `Player wins! Press "New Deal" to play again!`
+            standBtn.disabled = true;
+        hitBtn.disabled = true;
         } else if (p1Total === dealerTotal && p1Total < 21 && dealerTotal < 21){
             console.log('tie')
             messageEl.innerText = `It's a tie! Press "New Deal" to play again!`
             winner = true;
+            standBtn.disabled = true;
+        hitBtn.disabled = true;
         } else if (p1Total !== 21 && p1Total < 21 && dealerTotal !== 21 && dealerTotal < 21 && p1Total < dealerTotal) {
             console.log('winner 6')
             messageEl.innerText = `Dealer wins! Press "New Deal" to play again!`
             winner = true;
+            standBtn.disabled = true;
+            hitBtn.disabled = true;
         }
     }
 }
