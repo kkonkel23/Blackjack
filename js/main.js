@@ -157,7 +157,6 @@ function hit(){
         let p1HandEl = hand1.slice();
         total();
         checkWinner();
-        end();
         render();
         console.log(p1Total);
         console.log(card1Picked);
@@ -168,7 +167,6 @@ function hit(){
         let dealerHandEl = hand2.slice();
         total();
         checkWinner();
-        end();
         render();
         console.log(dealerHandEl)
         console.log(card2Picked)
@@ -186,13 +184,11 @@ function stand(){
         currentPlayer = 2
         messageEl.innerText = `It's the Dealer's turn!`
         count += 1
-        end();
     } else {
         currentPlayer = 1
         messageEl.innerText = `It's Player ${currentPlayer}'s turn!`
         count += 1
         checkWinner();
-        end();
     }
 }
 
@@ -228,23 +224,6 @@ function checkWinner () {
             winner = true;
         }
     }
-}
-
-function end() {
-    // if (count === 2){
-    //     standBtn.disabled = true
-    //     hitBtn.disabled = true
-    // } 
-    // if (winner === true){
-    //     standBtn.disabled = true;
-    //     hitBtn.disabled = true;
-    // } 
-    // if (dealerTotal >= 17 && currentPlayer === 'Dealer'){
-    //     hitBtn.disabled = true;
-    // } else {
-    //     standBtn.disabled = false;
-    //     hitBtn.disabled = false;
-    // }
 }
 
 function render(){
