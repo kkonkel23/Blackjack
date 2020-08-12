@@ -1,4 +1,3 @@
-
 /*--------Variabels-------*/
 // Create the variables for the players.
 let currentPlayer = [1, 'Dealer']
@@ -98,6 +97,7 @@ function getValue(card) {
 function total() {
     p1Total = 0;
     dealerTotal = 0;
+    let hasAce = false;
     for (i = 0; i < hand1.length; i++) {
         if ((hand1[i] === "dA" || hand1[i] === "hA" || hand1[i] === "cA" || hand1[i] === "sA") && p1Total < 11) {
             p1Total += 10;
@@ -110,10 +110,11 @@ function total() {
             p1Total += getValue(hand1[i]);
             console.log('nothing')
         }
-        if ((hand1.includes("dA") || hand1.includes("hA") || hand1.includes("cA") || hand1.includes("sA")) && p1Total > 21){
+        if ((hand1.includes("dA") || hand1.includes("hA") || hand1.includes("cA") || hand1.includes("sA")) && p1Total > 21 && hasAce === false){
             p1Total -= 10;
+            hasAce = true;
             console.log('avoid bust')
-        } 
+        }
     }
     for (i = 0; i < hand2.length; i++) {
         if ((hand2[i] === "dA" || hand2[i] === "hA" || hand2[i] === "cA" || hand2[i] === "sA") && dealerTotal < 11) {
@@ -284,4 +285,3 @@ function render(card1Picked) {
 // Create the checkWinner function, winner with the closest to 21 without going over wins
     //include here the check if the player busted(going over 21)
 // Include messages specified to whether the game is won, lost, or tied(had the same number). At the end of this add, Congrats or too bad or it's a tie, then after add, click Start a Game to play again!
- 
