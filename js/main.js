@@ -187,13 +187,11 @@ function stand(){
         messageEl.innerText = `It's the Dealer's turn!`
         count += 1
         end();
-        console.log(count)
     } else {
         currentPlayer = 1
         messageEl.innerText = `It's Player ${currentPlayer}'s turn!`
         count += 1
         checkWinner();
-        console.log(count)
         end();
     }
 }
@@ -221,33 +219,32 @@ function checkWinner () {
             console.log('winner 5')
             messageEl.innerText = `Player wins! Press "New Deal" to play again!`
         } else if (p1Total === dealerTotal && p1Total < 21 && dealerTotal < 21){
-            winner = true;
             console.log('tie')
             messageEl.innerText = `It's a tie! Press "New Deal" to play again!`
-            return 'tie';
-        } else if (p1Total !== 21 && p1Total < 21 && dealerTotal !== 21 && dealerTotal < 21 && p1Total < dealerTotal) {
             winner = true;
+        } else if (p1Total !== 21 && p1Total < 21 && dealerTotal !== 21 && dealerTotal < 21 && p1Total < dealerTotal) {
             console.log('winner 6')
             messageEl.innerText = `Dealer wins! Press "New Deal" to play again!`
+            winner = true;
         }
     }
 }
 
 function end() {
-    if (count === 2){
-        standBtn.disabled = true
-        hitBtn.disabled = true
-    } 
-    if (winner === true && count === 2){
-        standBtn.disabled = true;
-        hitBtn.disabled = true;
-    } 
-    if (dealerTotal >= 17 && currentPlayer === 'Dealer'){
-        hitBtn.disabled = true;
-    } else {
-        standBtn.disabled = false;
-        hitBtn.disabled = false;
-    }
+    // if (count === 2){
+    //     standBtn.disabled = true
+    //     hitBtn.disabled = true
+    // } 
+    // if (winner === true){
+    //     standBtn.disabled = true;
+    //     hitBtn.disabled = true;
+    // } 
+    // if (dealerTotal >= 17 && currentPlayer === 'Dealer'){
+    //     hitBtn.disabled = true;
+    // } else {
+    //     standBtn.disabled = false;
+    //     hitBtn.disabled = false;
+    // }
 }
 
 function render(){
