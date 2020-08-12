@@ -45,8 +45,6 @@ function init(){
     winner = false;
     hitBtn.disabled = false;
     standBtn.disabled = false;
-    // displayTotal1.innerText = `Total: 0`
-    // displayTotal2.innerText = `Total: 0`
 }
 
 // Shuffle function
@@ -201,36 +199,36 @@ function stand(){
 }
 
 function checkWinner () {
-    if (p1Total === 21 && dealerTotal < 21) {
+    if (p1Total === 21 && dealerTotal < 21 && count === 2) {
         winner = true;
-        messageEl.innerText = `Player 1 wins! Press "Start a Game" to play again!`
+        messageEl.innerText = `Player wins! Press "New Deal" to play again!`
         console.log('winner')
     } else if (p1Total > 21) {
         winner = true;
-        messageEl.innerText = `Bust! Player 1 lost, press "Start a Game" to play again!`
+        messageEl.innerText = `Bust! Player lost, press "New Deal" to play again!`
         console.log('winner 2')
     } else if (dealerTotal === 21 && p1Total < 21) {
         winner = true;
         console.log('winner 3')
-        messageEl.innerText = `Dealer wins! Press "Start a Game" to play again!`
+        messageEl.innerText = `Dealer wins! Press "New Deal" to play again!`
     } else if (dealerTotal > 21) {
         winner = true;
         console.log('winner 4')
-        messageEl.innerText = `Bust! Dealer lost, press "Start a Game" to play again!`
+        messageEl.innerText = `Player wins! Press "New Deal" to play again!`
     } else if (count === 2){
         if (p1Total !== 21 && p1Total < 21 && dealerTotal !== 21 && dealerTotal < 21 && p1Total > dealerTotal) {
             winner = true;
             console.log('winner 5')
-            messageEl.innerText = `Player 1 wins! Press "Start a Game" to play again!`
+            messageEl.innerText = `Player wins! Press "New Deal" to play again!`
         } else if (p1Total === dealerTotal && p1Total < 21 && dealerTotal < 21){
             winner = true;
             console.log('tie')
-            messageEl.innerText = `It's a tie! Press "Start a Game" to play again!`
+            messageEl.innerText = `It's a tie! Press "New Deal" to play again!`
             return 'tie';
         } else if (p1Total !== 21 && p1Total < 21 && dealerTotal !== 21 && dealerTotal < 21 && p1Total < dealerTotal) {
             winner = true;
             console.log('winner 6')
-            messageEl.innerText = `Dealer wins! Press "Start a Game" to play again!`
+            messageEl.innerText = `Dealer wins! Press "New Deal" to play again!`
         }
     }
 }
