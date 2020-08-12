@@ -128,12 +128,14 @@ function total() {
             dealerTotal += getValue(hand2[i]);
             console.log('nothing')
         }
-        if ((hand2.includes("dA") || hand2.includes("hA") || hand2.includes("cA") || hand2.includes("sA")) && dealerTotal > 21){
+        if ((hand2.includes("dA") || hand2.includes("hA") || hand2.includes("cA") || hand2.includes("sA")) && dealerTotal > 21 && hasAce === false){
             dealerTotal -= 10;
+            hasAce = true;
             console.log('avoid bust')
         } 
     }
 }
+
 
 function dealACard(){
     if (currentPlayer === 1) {
