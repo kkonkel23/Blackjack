@@ -34,15 +34,16 @@ h1 {
 }
 #playersHands {
     display: flex;
+    align-items: flex-start;
     text-align: center;
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 2;
     grid-row-end: 3;
     justify-content: space-evenly;
-    -webkit-columns: 20em;
-    -moz-columns: 20em;
-    columns: 20em;
+    animation: fadeInDown;
+    animation-duration: 2s;
+    
 }
 #playerCont, #dealerCont{
     display: flex;
@@ -57,23 +58,18 @@ h1 {
     color: white;
     border-color: white;
     max-width: 300px;
-    /* -webkit-columns: 20em;
-    -moz-columns: 20em;
-    columns: 20em; */
 }
-#dealer{
+#dealer {
     border: solid 5px;
     border-color: white;
     background-color: rgb(73, 180, 73);
     color: white;
     max-width: 300px;
     padding: 15px;
-    /* -webkit-columns: 20em;
-    -moz-columns: 20em;
-    columns: 20em; */
 }
-.card {
-    animation: fadeInDown;
-    animation-duration: 2s;
-    --anima
+
+@media only screen and (min-width: 768px){
+    /* body{
+        grid-template-rows: 250px auto;
+    } */
 }

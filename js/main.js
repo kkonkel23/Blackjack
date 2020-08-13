@@ -200,6 +200,7 @@ function checkTotal(){
 function checkWinner () {
     if (p1Total === 21 && dealerTotal < 21 && count === 2) {
         messageEl.innerText = `Player wins! Press "New Deal" to play again!`
+        confetti.start(1500);
         standBtn.disabled = true;
         hitBtn.disabled = true;
     } else if (p1Total > 21) {
@@ -212,11 +213,13 @@ function checkWinner () {
         hitBtn.disabled = true;
     } else if (dealerTotal > 21) {
         messageEl.innerText = `Player wins! Press "New Deal" to play again!`
+        confetti.start(1500);
         standBtn.disabled = true;
         hitBtn.disabled = true;
     } else if (count === 2){
         if (p1Total !== 21 && p1Total < 21 && dealerTotal !== 21 && dealerTotal < 21 && p1Total > dealerTotal) {
             messageEl.innerText = `Player wins! Press "New Deal" to play again!`
+            confetti.start(1500);
             standBtn.disabled = true;
             hitBtn.disabled = true;
         } else if (p1Total === dealerTotal && p1Total < 21 && dealerTotal < 21){
