@@ -2,25 +2,27 @@ body{
     display: grid;
     text-align: center;
     margin: 10px auto;
+    font-family: 'Rowdies';
     grid-template-columns: 15% auto;
-    grid-template-rows: 150px auto;
-    background-color: rgb(147, 209, 145);
+    grid-template-rows: 200px auto;
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
 }
 
-/* #deck {
-    justify-content: left;
-} */
 #header {
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 2;
-    margin-top: 10px;
-
+    margin-top: 5px;
+    padding-bottom: 40px;
 }
-
+h1 {
+    font-size: 50px;
+}
 #playersHands {
     display: flex;
+    text-align: center;
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 2;
@@ -29,14 +31,22 @@ body{
 }
 #player{
     border: solid 5px;
-    border-color: black;
+    background-color: green;
+    padding: 15px;
+    color: white;
+    border-color: white;
+    max-width: 300px;
 }
 #dealer{
     border: solid 5px;
-    border-color: black;
-    justify-content: space-evenly;
+    border-color: white;
+    background-color: green;
+    color: white;
+    max-width: 300px;
+    padding: 15px;
 }
 
-.card {
-    align-items: center;
-}
+/* .card {
+    text-align: center;
+    display: inline-block;
+} */
