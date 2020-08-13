@@ -26,6 +26,10 @@ const displayTotal2 = document.getElementById('dealerTotal')
 startBtn.addEventListener('click', init)
 hitBtn.addEventListener('click', hit)
 standBtn.addEventListener('click', stand)
+document.body.addEventListener('click', (e) => {
+    let audioVar = new Audio(`/audio/${e.target.id}.wav`)
+    audioVar.play()
+})
 
 /*-------Functions-------*/
 init();

@@ -7,6 +7,10 @@
     <link href="css/cardstarter.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Recursive&family=Rowdies:wght@300&display=swap" rel="stylesheet">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+    />
     <link rel="stylesheet" href="css/style.css">
     <script defer src="js/main.js"></script>
     <title>Blackjack Game</title>
@@ -19,18 +23,24 @@
         <button id="standBtn" type="button" class="btn btn-success">Stand</button>
     </div>
     <div id="deckContainer">
-        <div id="deck" class="card large back-blue shadow"></div>
+        <div id="deck" class="card large back-colorful shadow"></div>
     </div>
     <div id="playersHands">
-        <div id="player">
-            <h3>Player</h3>
-            <div id="p1Hand"></div>
-            <h3 id="p1Total">Total:</h3>
+        <div id="playerCont">
+            <div id="player">
+                <h3>Player</h3>
+                <div id="p1Hand"></div>
+                <h3 id="p1Total">Total:</h3>
+            </div>
+            <div class="whiteSpace"></div>
         </div>
-        <div id="dealer">
-            <h3>Dealer</h3>
-            <div id="dealerHand"></div>
-            <h3 id="dealerTotal">Total:</h3>
+        <div id="dealerCont">
+            <div id="dealer">
+                <h3>Dealer</h3>
+                <div id="dealerHand"></div>
+                <h3 id="dealerTotal">Total:</h3>
+            </div>
+            <div class="whiteSpace"></div>
         </div>
     </div>
     
