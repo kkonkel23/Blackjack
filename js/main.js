@@ -4,7 +4,6 @@ let currentPlayer = [1, 'Dealer']
 let p1Total = 0; 
 let dealerTotal = 0;
 let deck = [];
-let winner;
 let hand1 = new Array();
 let hand2 = new Array();
 
@@ -29,7 +28,6 @@ hitBtn.addEventListener('click', hit)
 standBtn.addEventListener('click', stand)
 
 /*-------Functions-------*/
-// Create the initial function and call for it code the card deck.
 init();
  
 function init(){
@@ -42,12 +40,10 @@ function init(){
     newHand();
     total();
     count = 0;
-    winner = false;
     hitBtn.disabled = false;
     standBtn.disabled = false;
 }
 
-// Shuffle function
 function shuffleCards(){
     let currentIdx = deck.length, tempVal, randomIndex;
     while (0 !== currentIdx) {
@@ -158,7 +154,6 @@ function hit(){
         total();
         checkWinner();
         render();
-
         console.log(p1Total);
         console.log(card1Picked);
         console.log(p1HandEl);
@@ -174,11 +169,6 @@ function hit(){
         console.log(card2Picked)
         console.log(dealerTotal)
     }
-        // declare who the current player is 
-        // push the card from the deck into the hand of the current player** 
-        
-        // currentPlayer.hand.push(cardPicked[0])
-        // now figure out how to display the cards to the players deck   
 }
 
 function stand(){
@@ -212,7 +202,7 @@ function checkWinner () {
         messageEl.innerText = `Bust! Player lost, press "New Deal" to play again!`
         standBtn.disabled = true;
         hitBtn.disabled = true;
-    } else if (dealerTotal === 21 && p1Total < 21) {
+    } else if (dealerTotal === 21 && p1Total < 21 && count === 2) {
         messageEl.innerText = `Dealer wins! Press "New Deal" to play again!`
         standBtn.disabled = true;
         hitBtn.disabled = true;
@@ -255,19 +245,3 @@ function render(){
     displayTotal1.innerText = `Total: ${p1Total}`
     displayTotal2.innerText = `Total: ${dealerTotal}`
 }
-
-
-// Create a function for shuffling the cards.
-
-
-// Create the start game function.
-
-// Get the total to show up once the first cards are dealt
-// Create the function to deal the hand.
-// Create the render function for the cards.
-// Create the hit function.
-// Get the total of the cards to correspond with the hit function.
-// Create the stay function.
-// Create the checkWinner function, winner with the closest to 21 without going over wins
-    //include here the check if the player busted(going over 21)
-// Include messages specified to whether the game is won, lost, or tied(had the same number). At the end of this add, Congrats or too bad or it's a tie, then after add, click Start a Game to play again!
