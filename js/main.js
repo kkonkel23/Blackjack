@@ -110,36 +110,28 @@ function total() {
         if ((hand1[i] === "dA" || hand1[i] === "hA" || hand1[i] === "cA" || hand1[i] === "sA") && p1Total < 11) {
             p1Total += 10;
             p1Total += getValue(hand1[i])
-            console.log('less than 11')
         } else if ((hand1[i] === "dA" || hand1[i] === "hA" || hand1[i] === "cA" || hand1[i] === "sA") && p1Total > 11){
             p1Total += getValue(hand1[i]);
-            console.log('higher than 11')
         } else {
             p1Total += getValue(hand1[i]);
-            console.log('nothing')
         }
         if ((hand1.includes("dA") || hand1.includes("hA") || hand1.includes("cA") || hand1.includes("sA")) && p1Total > 21 && hasAce === false){
             p1Total -= 10;
             hasAce = true;
-            console.log('avoid bust')
         }
     }
     for (i = 0; i < hand2.length; i++) {
         if ((hand2[i] === "dA" || hand2[i] === "hA" || hand2[i] === "cA" || hand2[i] === "sA") && dealerTotal < 11) {
             dealerTotal += 10;
             dealerTotal += getValue(hand2[i])
-            console.log('less than 11')
         } else if ((hand2[i] === "dA" || hand2[i] === "hA" || hand2[i] === "cA" || hand2[i] === "sA") && dealerTotal > 11){
             dealerTotal += getValue(hand2[i]);
-            console.log('higher than 11')
         } else {
             dealerTotal += getValue(hand2[i]);
-            console.log('nothing')
         }
         if ((hand2.includes("dA") || hand2.includes("hA") || hand2.includes("cA") || hand2.includes("sA")) && dealerTotal > 21 && hasAce === false){
             dealerTotal -= 10;
             hasAce = true;
-            console.log('avoid bust')
         } 
     }
 }
@@ -165,9 +157,6 @@ function hit(){
         total();
         checkWinner();
         render();
-        console.log(p1Total);
-        console.log(card1Picked);
-        console.log(p1HandEl);
     } else {
         let card2Picked = deck.pop();
         hand2.push(card2Picked);
@@ -176,9 +165,6 @@ function hit(){
         checkWinner();
         render();
         checkTotal();
-        console.log(dealerHandEl)
-        console.log(card2Picked)
-        console.log(dealerTotal)
     }
 }
 
@@ -200,7 +186,6 @@ function stand(){
 function checkTotal(){
     if (count === 1 && dealerTotal >= 17){
         hitBtn.disabled = true;
-        console.log('disabled')
     }
 }
 
@@ -247,13 +232,11 @@ function render(){
     hand1.forEach((card) => {
         let newDiv = document.createElement('div')
         newDiv.className = `card large ${card}`
-        console.log(newDiv)
         p1HandEl.appendChild(newDiv)
     })
     hand2.forEach((card) => {
         let newDiv = document.createElement('div')
         newDiv.className = `card large ${card}`
-        console.log(newDiv)
         dealerHandEl.appendChild(newDiv)
     })
     displayTotal1.innerText = `Total: ${p1Total}`

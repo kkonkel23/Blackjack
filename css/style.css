@@ -5,21 +5,30 @@ body{
     font-family: 'Rowdies';
     grid-template-columns: 15% auto;
     grid-template-rows: 200px auto;
-    background: rgb(248,213,250);
-background: radial-gradient(circle, rgba(248,213,250,1) 0%, rgba(130,146,244,1) 100%);
+    background: linear-gradient(270deg, #9767f9, #4c9bf7, #0cd1f2, #15dfc6);
+    background-size: 800% 800%;
+    -webkit-animation: AnimationName 25s ease infinite;
+    -moz-animation: AnimationName 25s ease infinite;
+    animation: AnimationName 25s ease infinite;
+}
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
 }
 button {
     margin: 5px;
     margin-top: 10px;
-}
-#startBtn{
-    background-color: ;
-}
-#hitBtn{
-
-}
-#standBtn{
-    
 }
 #header {
     grid-column-start: 2;
@@ -40,40 +49,13 @@ h1 {
     grid-column-end: 3;
     grid-row-start: 2;
     grid-row-end: 3;
-    justify-content: space-evenly;
-    
-    
+    justify-content: space-evenly; 
 }
-/* #playersHands:active{
-    animation: fadeInDown;
-    animation-duration: 2s;
-    --animate-infinte: infinite;
-} */
-#playerCont, #dealerCont{
-    display: flex;
-}
-.whiteSpace {
-    flex-grow: 99;
-}
-#player{
+#player, #dealer{
     border: solid 5px;
     background-color: rgb(73, 180, 73);
     padding: 15px;
     color: white;
     border-color: white;
     max-width: 300px;
-}
-#dealer {
-    border: solid 5px;
-    border-color: white;
-    background-color: rgb(73, 180, 73);
-    color: white;
-    max-width: 300px;
-    padding: 15px;
-}
-
-@media only screen and (min-width: 768px){
-    /* body{
-        grid-template-rows: 250px auto;
-    } */
 }

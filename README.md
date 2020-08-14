@@ -14,9 +14,11 @@
 * CSS
 * Javascript
 * Git
-* freesound.org
-* freesvg.org
-* googlefonts.com
+* Freesound.org
+* Freesvg.org
+* Googlefonts.com
+* Gradient-animator.com
+* Getbootstrap.com
 
 
 ## Wireframe:  
