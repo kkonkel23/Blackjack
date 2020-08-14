@@ -2,8 +2,8 @@
 
 
 ## Website Link:  
-[unit1-blackjack.surge.sh]
 
+<unit1-blackjack.surge.sh>
 
 ## Objectives:
 * Create a game of Blackjack that accurately resembles playing the game with a physical deck of cards.
