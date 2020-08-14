@@ -8,7 +8,9 @@
 ## Objectives:
 * Create a game of Blackjack that accurately resembles playing the game with a physical deck of cards.
 
-
+## Description:
+* Blackjack is a simple card game between the players and the dealer to see who can get the closest to 21 without busting(going over 21).
+  
 ## Technology Used:
 * HTML
 * CSS
