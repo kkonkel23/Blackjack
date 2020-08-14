@@ -41,10 +41,14 @@ h1 {
     grid-row-start: 2;
     grid-row-end: 3;
     justify-content: space-evenly;
-    animation: fadeInDown;
-    animation-duration: 2s;
+    
     
 }
+/* #playersHands:active{
+    animation: fadeInDown;
+    animation-duration: 2s;
+    --animate-infinte: infinite;
+} */
 #playerCont, #dealerCont{
     display: flex;
 }

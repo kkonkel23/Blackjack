@@ -20,6 +20,7 @@ const dealerHandEl = document.getElementById('dealerHand')
 const messageEl = document.getElementById('message')
 const displayTotal1 = document.getElementById('p1Total')
 const displayTotal2 = document.getElementById('dealerTotal')
+const playersHands = document.getElementById('playersHands')
 
 
 /*-------Event Listeners-------*/
@@ -29,6 +30,12 @@ standBtn.addEventListener('click', stand)
 document.body.addEventListener('click', (e) => {
     let audioVar = new Audio(`/audio/${e.target.id}.wav`)
     audioVar.play()
+})
+startBtn.addEventListener('click', function(e){
+    e.preventDefault;
+    playersHands.classList.remove("animate__fadeInDown");
+    void playersHands.offsetWidth;
+    playersHands.classList.add("animate__fadeInDown")
 })
 
 /*-------Functions-------*/
