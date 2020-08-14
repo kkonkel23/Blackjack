@@ -2,7 +2,7 @@
 
 
 ## Website Link:  
-* (Place link to game here)
+* unit1-blackjack.surge.sh
 
 
 ## Objectives:
@@ -23,6 +23,9 @@
 
 ## Wireframe:  
 ![wireframe](https://i.imgur.com/aeY8AjV.png)
+
+## Here is what the initial page looks like:
+![gameplay](https://i.imgur.com/joBs6QG.png)
 
 
 ## User Stories:
